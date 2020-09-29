@@ -35,6 +35,6 @@ func main() {
 	})
 	err := http.ListenAndServeTLS(*addr, "localhost.crt", "localhost.key", nil)
 	if err != nil {
-		log.Fatal("ListenAndServe: ", err)
+		log.Fatal("ListenAndServeTLS: ", err)
 	}
 }
