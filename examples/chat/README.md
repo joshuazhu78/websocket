@@ -4,6 +4,11 @@ This application shows how to use the
 [websocket](https://github.com/gorilla/websocket) package to implement a simple
 web chat application.
 
+## Generating keys
+[SecureHTTPS](https://medium.com/rungo/secure-https-servers-in-go-a783008b36da)
+    $ openssl req  -new  -newkey rsa:2048  -nodes  -keyout localhost.key  -out localhost.csr
+    $ openssl  x509  -req  -days 365  -in localhost.csr  -signkey localhost.key  -out localhost.crt
+
 ## Running the example
 
 The example requires a working Go development environment. The [Getting
