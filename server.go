@@ -96,6 +96,23 @@ func checkSameOrigin(r *http.Request) bool {
 	return equalASCIIFold(u.Host, r.Host)
 }
 
+// CheckSameOrLocalOrigin returns true if the origin is not set or is equal to the request host or is equal to 127.0.0.1
+func CheckSameOrLocalOrigin(r *http.Request) bool {
+	origin := r.Header["Origin"]
+	if len(origin) == 0 {
+		return true
+	}
+	u, err := url.Parse(origin[0])
+	if err != nil {
+		return false
+	}
+	uAddr := strings.Split(u.Host, ":")[0]
+	if uAddr == "127.0.0.1" {
+		return true
+	}
+	return equalASCIIFold(u.Host, r.Host)
+}
+
 func (u *Upgrader) selectSubprotocol(r *http.Request, responseHeader http.Header) string {
 	if u.Subprotocols != nil {
 		clientProtocols := Subprotocols(r)
