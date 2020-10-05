@@ -36,6 +36,7 @@ var upgrader = websocket.Upgrader{
 	ReadBufferSize:  1024,
 	WriteBufferSize: 1024,
 	CheckOrigin:     websocket.CheckSameOrLocalOrigin,
+	Subprotocols:    []string{"protocol1"},
 }
 
 // Client is a middleman between the websocket connection and the hub.
